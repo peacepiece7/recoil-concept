@@ -1,34 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React, { Suspense } from 'react'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import './App.css'
+import {
+  hectorCounterState,
+  sectorCounterState,
+  hectorCounterLabelState,
+  sectorCounterLabelState,
+} from './recoil/states'
+
+import Infomation from './components/Infomation'
+import FilterAnimals from './components/FilterAnimals'
+import AsyncUser from './components/Async'
 
 function App() {
-  const [count, setCount] = useState(0)
+  // 기본 사용법
+  const [hectorCount, setHectorCount] = useRecoilState(hectorCounterState)
+  const [sectorCount, setSectorCount] = useRecoilState(sectorCounterState)
+  const hectorCountLabel = useRecoilValue(hectorCounterLabelState)
+  const sectorCountLabel = useRecoilValue(sectorCounterLabelState)
 
+  const increaseHectorCount = () => {
+    setHectorCount(hectorCount + 1)
+  }
+  const decreaseHectorCount = () => {
+    setHectorCount(hectorCount - 1)
+  }
+
+  const increaseSectorCount = () => {
+    setSectorCount(sectorCount + 1)
+  }
+  const decreaseSectorCount = () => {
+    setSectorCount(sectorCount - 1)
+  }
   return (
-    <>
+    <div>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <h2>{hectorCountLabel}</h2>
+        <div>{hectorCount}</div>
+        <button onClick={increaseHectorCount}>+</button>
+        <button onClick={decreaseHectorCount}>-</button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+      <div style={{ marginTop: '50px' }}>
+        <h2>{sectorCountLabel}</h2>
+        <div>{sectorCount}</div>
+        <button onClick={increaseSectorCount}>+</button>
+        <button onClick={decreaseSectorCount}>-</button>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      <Infomation></Infomation>
+      <FilterAnimals></FilterAnimals>
+
+      <Suspense fallback={<h2>loading...</h2>}>
+        <AsyncUser></AsyncUser>
+      </Suspense>
+    </div>
   )
 }
 
