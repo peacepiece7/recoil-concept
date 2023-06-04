@@ -14,6 +14,17 @@ export const animalState = atom<Animal[]>({
     { name: 'nabi', age: '3', kind: 'cat' },
   ],
 })
+/**
+ * 아래 예시처럼 selector를 사용해서 비동기적으로 데이터를 받아올 수 이습니다.
+ * @example
+ *  const fruitsState = atom<Fruit[]>({
+ *  key: 'fruits' + v1(),
+ *  default: selector({
+ *    key: 'fruits/default' + v1(),
+ *    get: async () => await getFruits(),
+ *  }),
+ * })
+ */
 
 type AnimalFilter = 'all' | 'dog' | 'cat'
 export const animalFilterState = atom<AnimalFilter>({
