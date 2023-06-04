@@ -1,4 +1,4 @@
-import { atom, selector, selectorFamily } from 'recoil'
+import { atom, selector } from 'recoil'
 // 개발 모드에서 key가 재선언되는 문제를 해결하기 위해 uuid를 사용
 import { v1 } from 'uuid'
 

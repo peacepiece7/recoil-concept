@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import { Suspense } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import './App.css'
 import {

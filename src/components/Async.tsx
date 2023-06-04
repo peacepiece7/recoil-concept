@@ -1,4 +1,3 @@
-import { Suspense } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { currentUserIdState, currentUserNameQuery } from '../recoil/userState'
 import UserInfo from './UserInfo'
